@@ -97,9 +97,9 @@ export default function updateChildren(parentElm,oldCh,newCh){
       }else{
         // 如果不是undefined，不是全新的项，而是需要移动的项
         const elmToMove = oldCh[idxInOld];
-        // 移动
+        // 继续比较这两项虚拟节点
         patchVnode(elmToMove,newStartVnode);
-        // 把这项设置为undefined，表示我已经处理完这项了
+        // 把这项设置为undefined，表示我已经处理完这项了。注意，这里会打undefined标记，开头就需要if判断跳过undefined项
         oldCh[idxInOld] = undefined;
         // 移动，调用insertBefore也可以实现移动
         parentElm.insertBefore(elmToMove.elm,oldStartVnode.elm);
